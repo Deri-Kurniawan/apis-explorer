@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import ImdbMovies from "./pages/ImdbMovies";
+
 
 function App() {
+  function Home() {
+    return "Hello World";
+  }
+
+  function NotFound() {
+    return "Page Not Found";
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <nav>
+        <ul>
+          <li><Link to="/">HOME</Link></li>
+          <li><Link to="/imdb-movies">IMDB MOVIES</Link></li>
+        </ul>
+      </nav>
+      <main>
+      <Routes>
+        <Route path="/" exact element={<Home/>} />
+        <Route path="/imdb-movies" element={<ImdbMovies/>} />
+        <Route path="*" element={<NotFound/>} />
+      </Routes>
+      </main>
+    </Router>
   );
 }
 
